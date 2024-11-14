@@ -39,7 +39,7 @@ def generate_html_content(article_text):
 
     prompt = """
     Create HTML for the following article. Use appropriate HTML tags to structure the content. Insert placeholders for images using <img src='image_placeholder.jpg'> with an alt attribute and captions for the images in the appropriate places. The image should ideally be placed next to large headings. It can also open or conclude the text.
-    Generate the code to be inserted between the <body> and </body> tags, so without CSS, JS, and without the body tags themselves. \n\n
+    Generate the code to be inserted between the <body> and </body> tags, so without CSS, JS, and without the body tags themselves. No ```html``` \n\n
     Article: \n
     """ + article_text
 
@@ -49,26 +49,46 @@ def generate_html_content(article_text):
             model="gpt-4o-mini",
             messages=[
             {"role": "system", "content": "You are an intriguing article writer."},
-            {"role": "user", "content": prompt}
-        ]
+            {"role": "user", "content": prompt},
+        ],
             max_tokens=1500,
             temperature=0.7
         )
-        generated_html = response['choices'][0]['message']['content']
+        generated_html = str(response.choices[0].message.content)
         return generated_html
 
     except Exception as e:
         print("An error occurred:", e)
         return None
 
+def save_html_file(html_content, output_file):
+    """
+    Saves the generated HTML content to a file.
+    Args:
+    file_path (str): path to generated html content
+    output_file (str): name of the output html file to save to
+
+    Returns:
+    none
+    """
+    with open(output_file, 'w', encoding='utf-8') as file:
+        file.write(html_content)
 
 
 def main():
     article_path = "TrescArtykulu.txt"
     article_text = import_article(article_path)
+    output_file = "Artykul.html"
+
     print("Imported Article Text:\n", article_text)
     html_content = generate_html_content(article_text)
     print("\nGenerated HTML Content:\n", html_content)
+
+    if html_content:
+        save_html_file(html_content, output_file)
+        print(f"Html saved to file {output_file}")
+    else:
+        print("Error generating html file.")
 
 if __name__ == "__main__":
     main()
