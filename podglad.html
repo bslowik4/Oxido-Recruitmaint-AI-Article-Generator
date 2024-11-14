@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazing Article</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+header {
+    background-color: #eaeaea;
+    color: #000;
+    text-align: center;
+    padding: 20px 0;
+    border-bottom: 2px solid #000;
+    font-family: 'Georgia', serif;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin: 0;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+header img {
+    width: 70%;
+    height: auto;
+    margin: 20px 0;
+    border: 1px solid #333;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+main {
+    width: 70%;
+    margin: 0 auto;
+    padding: 0 10px;
+    font-family: 'Times New Roman', serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+section {
+    width: 100%;
+    max-width: 800px;
+    margin-bottom: 30px;
+    padding: 15px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+section.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+section h2 {
+    font-size: 1.8rem;
+    color: #333;
+    margin-top: 0;
+    font-family: 'Georgia', serif;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 5px;
+}
+
+section p {
+    font-size: 1rem;
+    margin: 10px 0;
+    line-height: 1.5;
+    text-align: justify;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #eaeaea;
+    color: #000;
+    font-size: 0.9rem;
+    border-top: 2px solid #000;
+}
+
+footer p {
+    margin: 10px 0;
+}
+
+footer p:last-child {
+    font-style: italic;
+}
+
+@media (min-width: 768px) {
+    section {
+        width: 48%;
+        margin-bottom: 20px;
+        display: inline-block;
+        vertical-align: top;
+        padding: 15px;
+    }
+}
+
+section img {
+    width: 100%;
+    height: auto;
+    margin: 20px 0;
+    border: 1px solid #333;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+section figcaption {
+    font-size: 0.8rem;
+    font-style: italic;
+    color: #555;
+    margin-top: 5px;
+}
+
+    </style>
+    <script>
+        function loadImages() {
+            const images = document.querySelectorAll('img');
+            let loadedImages = 0;
+            const totalImages = images.length;
+    
+            images.forEach((img) => {
+                const altText = img.alt;
+                if (altText) {
+                    img.src = `https://image.pollinations.ai/prompt/${encodeURIComponent(altText)}`;
+    
+                    img.onload = () => {
+                        loadedImages++;
+                        if (loadedImages === totalImages) {
+                            console.log("sucess")
+                        }
+                    };
+    
+                    img.onerror = () => {
+                        loadedImages++;
+                        if (loadedImages === totalImages) {
+                            console.log("failed")
+                        }
+                    };
+                }
+            });
+        }
+    
+        function handleIntersection(entries, observer) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }
+    
+        window.addEventListener('load', loadImages);
+    
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('section');
+            const observer = new IntersectionObserver(handleIntersection, {
+                threshold: 0.5
+            });
+    
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+    
+</head>
+<body>
+    <header>
+        <h1>Sztuczna inteligencja: wpływ i wyzwania</h1>
+        <img src='image_placeholder.jpg' alt='Sztuczna inteligencja' />
+        <figcaption>Przykład zastosowania sztucznej inteligencji w codziennym życiu.</figcaption>
+    </header>
+    
+    <main>
+        <section>
+            <h2>Wprowadzenie do sztucznej inteligencji</h2>
+            <p>
+                Sztuczna inteligencja to dziedzina nauki i technologii zajmująca się tworzeniem maszyn i programów zdolnych do wykonywania zadań wymagających ludzkiej inteligencji, takich jak uczenie się, rozumienie języka naturalnego i podejmowanie decyzji. AI stała się integralną częścią naszego codziennego życia, od asystentów głosowych w smartfonach, jak Siri czy Google Assistant, po systemy rekomendacyjne na platformach streamingowych, takich jak Netflix czy Spotify. Wspiera nas w planowaniu tras, automatyzacji domowych urządzeń oraz w komunikacji. Obecnie jest o niej bardzo głośno chociażby za sprawą dużych modeli językowych, jak ChatGPT.
+            </p>
+        </section>
+    
+        <section>
+            <h2>Rozwój uczenia maszynowego i głębokiego uczenia</h2>
+            <img src='image_placeholder.jpg' alt='Uczenie maszynowe' />
+            <figcaption>Zaawansowane modele AI w analizie danych.</figcaption>
+            <p>
+                Rozwój uczenia maszynowego i głębokiego uczenia umożliwił tworzenie zaawansowanych modeli, które potrafią samodzielnie rozwiązywać skomplikowane problemy. Sieci neuronowe analizują ogromne ilości danych w obszarach takich jak rozpoznawanie obrazów czy przetwarzanie języka naturalnego. Dzięki temu AI nie tylko przetwarza dane, ale także podejmuje decyzje, wcześniej zarezerwowane dla ludzi.
+            </p>
+        </section>
+    
+        <section>
+            <h2>Wyzwania etyczne i społeczne</h2>
+            <img src='image_placeholder.jpg' alt='Wyzwania etyczne' />
+            <figcaption>Etyka w rozwoju sztucznej inteligencji.</figcaption>
+            <p>
+                Kluczowym wyzwaniem jest zapewnienie etycznego i odpowiedzialnego rozwoju AI. Należy zwracać uwagę na uprzedzenia w danych treningowych, które mogą prowadzić do dyskryminacji, oraz na wpływ AI na prywatność i nierówności społeczne. Ważne jest opracowanie ram etycznych i mechanizmów nadzoru regulujących rozwój i wdrażanie AI, a także włączanie różnych grup społecznych w ten proces. Transparentność działań firm i instytucji może pomóc w budowaniu zaufania do technologii.
+            </p>
+            <p>
+                Badacze pracują nad rozwiązaniami umożliwiającymi harmonijne współistnienie ludzi i AI, koncentrując się na tworzeniu systemów wspierających człowieka, a nie go zastępujących. Istotne jest opracowywanie mechanizmów współpracy między człowiekiem a maszyną, co sprzyja synergii i skutecznej komunikacji.
+            </p>
+        </section>
+    
+        <section>
+            <h2>Automatyzacja i przyszłość rynku pracy</h2>
+            <img src='image_placeholder.jpg' alt='Automatyzacja' />
+            <figcaption>Wpływ AI na rynek pracy.</figcaption>
+            <p>
+                Automatyzacja procesów dzięki AI przynosi korzyści w postaci zwiększonej efektywności i redukcji kosztów. Jednak istnieją obawy dotyczące wpływu na rynek pracy i potencjalnego zastąpienia ludzi przez maszyny. Kluczowe jest przemyślane podejście do transformacji rynku pracy, inwestycja w edukację i przekwalifikowanie pracowników, aby mogli oni znaleźć nowe role w gospodarce przyszłości.
+            </p>
+            <p>
+                Specjaliści powinni być gotowi na ciągłe doskonalenie swoich umiejętności, ucząc się m.in. zasad działania algorytmów AI. Przyszłość pracy będzie wymagać nie tylko umiejętności technicznych, ale także kompetencji miękkich, takich jak kreatywność i zdolność rozwiązywania problemów.
+            </p>
+        </section>
+    </main>
+    
+    <footer>
+        <p>
+            Nasza zdolność do adaptacji i innowacji zdecyduje o tym, jak AI wpłynie na przyszłość ludzkości. Wspólnie możemy kształtować tę przyszłość, wykorzystując AI dla dobra wszystkich.
+        </p>
+        <p>
+            *Tekst opracowany przez AI. W Oxido nie mamy aż tak cukierkowego spojrzenia na sztuczną inteligencję... ;)
+        </p>
+    </footer>
+</body>
+</html>

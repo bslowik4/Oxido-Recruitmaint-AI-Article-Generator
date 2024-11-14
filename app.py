@@ -39,7 +39,7 @@ def generate_html_content(article_text):
 
     prompt = """
     Create HTML for the following article. Use appropriate HTML tags to structure the content. Insert placeholders for images using <img src='image_placeholder.jpg'> with an alt attribute and captions for the images in the appropriate places. The image should ideally be placed next to large headings. It can also open or conclude the text.
-    Generate the code to be inserted between the <body> and </body> tags, so without CSS, JS, and without the body tags themselves. No ```html``` \n\n
+    Generate the code to be inserted between the <body> and </body> tags, so without CSS, JS, and without the body tags themselves. No ```html```. Add header, main and footer \n\n
     Article: \n
     """ + article_text
 
