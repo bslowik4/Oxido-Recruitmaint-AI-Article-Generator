@@ -17,7 +17,7 @@ This project generates structured HTML content from a given article text file us
 ### Installation
 1. Clone this repository:
    ```bash
-   git clone https://github.com/yourusername/html-article-generator.git
+   git clone https://github.com/bslowik4/Oxido-Recruitmaint-AI-Article-Generator
    cd html-article-generator
 2.Install the required Python packages:
     pip install openai python-dotenv
